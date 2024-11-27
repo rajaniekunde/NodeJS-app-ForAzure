@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-azure-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js application for Azure deployment.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": ["nodejs", "azure", "github-actions"],
+  "author": "Rajani",
+  "license": "MIT",
+  "dependencies": {}
+}
