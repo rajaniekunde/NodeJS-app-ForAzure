@@ -1,0 +1,33 @@
+name: Node.js Pipeline - Install and Start
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout Code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set Up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Step 3: Install Dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Start Application and Test
+      - name: Start application and perform health check
+        run: |
+          nohup npm start &
+          sleep 5 # Wait for the server to start
+          echo "Performing health check..."
+          curl -f http://localhost:3000 || (echo "Application failed to start!" && exit 1)
