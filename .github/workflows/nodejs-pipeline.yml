@@ -1,4 +1,4 @@
-name: Node.js Pipeline - Install and Start
+name: Node.js Pipeline - Install and Start in Background
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  test-app:
+  install-and-start:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,10 +24,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Start Application and Test
-      - name: Start application and perform health check
+      # Step 4: Start Application in Background
+      - name: Start application
         run: |
-          nohup npm start &
-          sleep 5 # Wait for the server to start
+          nohup npm start & # Start the app in the background
+          sleep 5 # Allow the app some time to initialize
+          echo "Application started."
+
+      # Step 5: Verify Application is Running
+      - name: Verify application is running
+        run: |
           echo "Performing health check..."
           curl -f http://localhost:3000 || (echo "Application failed to start!" && exit 1)
