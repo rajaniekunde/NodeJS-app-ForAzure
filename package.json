@@ -1,13 +1,19 @@
 {
-  "name": "nodejs-azure-app",
+  "name": "nodejs-app",
   "version": "1.0.0",
-  "description": "A simple Node.js application for Azure deployment.",
+  "description": "A simple Node.js application with build, test, and deployment scripts for Azure.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "jest",
+    "build": "webpack",
+    "deploy": "echo 'Deploying to production...'"
   },
   "keywords": ["nodejs", "azure", "github-actions"],
   "author": "Rajani",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "jest": "^29.0.0",
+    "webpack": "^5.0.0"
+  }
 }
