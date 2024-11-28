@@ -15,5 +15,8 @@
   "dependencies": {
     "jest": "^29.0.0",
     "webpack": "^5.0.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.0.0"
   }
 }
