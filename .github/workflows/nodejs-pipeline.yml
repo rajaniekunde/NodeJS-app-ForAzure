@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted  # This ensures the job runs on your self-hosted runner in Azure
+    runs-on: self-hosted  # This ensures the job runs on your self-hosted runner
 
     steps:
     # Checkout code
@@ -21,19 +21,16 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '14'  # Change to your desired Node.js version
+        node-version: '14'  # You can change this to your preferred Node.js version
 
-    # Install dependencies
+    # Install dependencies (if any, modify this step if no dependencies are required)
     - name: Install dependencies
       run: npm install
 
-    # Build application (if necessary)
+    # Build application (if applicable, adjust based on your package.json)
     - name: Build application
-      run: npm run build  # Adjust based on your package.json scripts
+      run: npm run build  # Adjust this if you do not have a build script in package.json
 
     # Deploy application (if applicable)
-    - name: Deploy to Azure
-      run: |
-        echo "Deploying to Azure..."
-        # Add the Azure deployment steps here, such as using Azure CLI to deploy your application
-        # Example: az webapp deplggoy --name <app-name> --resource-group <resource-group> --src-path <path-to-package>
+    - name: Deploy
+      run: npm run deploy  # Adjust this if you do not have a deploy script in package.json
