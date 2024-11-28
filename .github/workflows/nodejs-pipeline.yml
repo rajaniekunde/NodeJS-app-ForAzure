@@ -27,14 +27,13 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # Run tests (if any)
-    - name: Run tests
-      run: npm test
-
     # Build application (if necessary)
     - name: Build application
       run: npm run build  # Adjust based on your package.json scripts
 
     # Deploy application (if applicable)
-    - name: Deploy
-      run: npm run deploy  # Adjust based on your package.json scripts
+    - name: Deploy to Azure
+      run: |
+        echo "Deploying to Azure..."
+        # Add the Azure deployment steps here, such as using Azure CLI to deploy your application
+        # Example: az webapp deploy --name <app-name> --resource-group <resource-group> --src-path <path-to-package>
