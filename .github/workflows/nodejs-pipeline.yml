@@ -36,4 +36,4 @@ jobs:
       run: |
         echo "Deploying to Azure..."
         # Add the Azure deployment steps here, such as using Azure CLI to deploy your application
-        # Example: az webapp deploy --name <app-name> --resource-group <resource-group> --src-path <path-to-package>
+        # Example: az webapp deplggoy --name <app-name> --resource-group <resource-group> --src-path <path-to-package>
