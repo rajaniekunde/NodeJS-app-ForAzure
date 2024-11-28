@@ -1,38 +1,40 @@
-name: Node.js Pipeline - Install and Start in Background
+name: Node.js CI
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  install-and-start:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: self-hosted  # This ensures the job runs on your self-hosted runner in Azure
 
     steps:
-      # Step 1: Checkout Code
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      # Step 2: Set Up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    # Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  # Change to your desired Node.js version
 
-      # Step 3: Install Dependencies
-      - name: Install dependencies
-        run: npm install
+    # Install dependencies
+    - name: Install dependencies
+      run: npm install
 
-      # Step 4: Start Application in Background
-      - name: Start application
-        run: |
-          nohup npm start & # Start the app in the background
-          sleep 5 # Allow the app some time to initialize
-          echo "Application started."
+    # Run tests (if any)
+    - name: Run tests
+      run: npm test
 
-      # Step 5: Verify Application is Running
-      - name: Verify application is running
-        run: |
-          echo "Performing health check..."
-          curl -f http://localhost:3000 || (echo "Application failed to start!" && exit 1)
+    # Build application (if necessary)
+    - name: Build application
+      run: npm run build  # Adjust based on your package.json scripts
+
+    # Deploy application (if applicable)
+    - name: Deploy
+      run: npm run deploy  # Adjust based on your package.json scripts
