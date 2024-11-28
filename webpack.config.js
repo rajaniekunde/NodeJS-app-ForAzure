@@ -12,7 +12,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',  // If you're using Babel to transpile your code
+          loader: 'babel-loader',  // Babel loader to transpile JavaScript
+          options: {
+            presets: ['@babel/preset-env'],  // Use the env preset for JS transformation
+          },
         },
       },
     ],
